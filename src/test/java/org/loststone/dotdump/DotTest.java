@@ -12,7 +12,7 @@ public class DotTest {
   @Test
   public void testEmptyDot() {
     Dot dot = new Dot(GraphType.GRAPH, "name");
-    assertEquals("GRAPH name {\n}\n", dot.toString());
+    assertEquals("GRAPH \"name\" {\n}\n", dot.toString());
   }
 
   @Test
@@ -20,7 +20,7 @@ public class DotTest {
     Dot dot = new Dot(GraphType.GRAPH, "name");
     dot.withNode(a);
     dot.withNode(b);
-    assertEquals("GRAPH name {\n\ta;\n\tb;\n}\n", dot.toString());
+    assertEquals("GRAPH \"name\" {\n\t\"a\";\n\t\"b\";\n}\n", dot.toString());
   }
 
   @Test
@@ -29,7 +29,7 @@ public class DotTest {
     dot.withNode(a);
     dot.withNode(b);
     dot.withRelation(new NodeRelation(a,b));
-    assertEquals("GRAPH name {\n\ta;\n\tb;\n\ta -- b;\n}\n", dot.toString());
+    assertEquals("GRAPH \"name\" {\n\t\"a\";\n\t\"b\";\n\t\"a\" -- \"b\";\n}\n", dot.toString());
   }
 
   @Test
@@ -38,7 +38,7 @@ public class DotTest {
     dot.withNode(a);
     dot.withNode(b);
     dot.withRelation(new NodeRelation(a,b));
-    assertEquals("DIGRAPH name {\n\ta;\n\tb;\n\ta --> b;\n}\n", dot.toString());
+    assertEquals("DIGRAPH \"name\" {\n\t\"a\";\n\t\"b\";\n\t\"a\" -> \"b\";\n}\n", dot.toString());
   }
 
   @Test
@@ -48,6 +48,6 @@ public class DotTest {
     dot.withNode(b);
     dot.withRelation(new NodeRelation(a,b));
     dot.withComment("Explanatory comment");
-    assertEquals("GRAPH name {\n# Explanatory comment \n\ta;\n\tb;\n\ta -- b;\n}\n", dot.toString());
+    assertEquals("GRAPH \"name\" {\n# Explanatory comment \n\t\"a\";\n\t\"b\";\n\t\"a\" -- \"b\";\n}\n", dot.toString());
   }
 }

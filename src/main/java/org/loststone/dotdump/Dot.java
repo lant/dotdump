@@ -86,7 +86,7 @@ public class Dot {
   }
 
   private void header(Appendable container) throws IOException {
-      container.append(String.format("%s %s {\n", type.toString(), name));
+      container.append(String.format("%s \"%s\" {\n", type.toString(), name));
   }
 
   private void footnote(Appendable container) throws IOException {

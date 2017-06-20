@@ -1,7 +1,7 @@
 package org.loststone.dotdump;
 
 public enum GraphType {
-  DIGRAPH("-->"), GRAPH("--");
+  DIGRAPH("->"), GRAPH("--");
   private String arrow;
 
   GraphType(String arrow) {

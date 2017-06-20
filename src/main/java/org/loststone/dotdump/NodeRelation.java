@@ -29,11 +29,11 @@ public class NodeRelation {
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append('\t');
-    stringBuilder.append(a.getId());
+    stringBuilder.append(a.wrappedId());
     stringBuilder.append(" ");
     stringBuilder.append(type.getArrow());
     stringBuilder.append(" ");
-    stringBuilder.append(b.getId());
+    stringBuilder.append(b.wrappedId());
 
     if (hasAttributes()) {
       stringBuilder.append("[");

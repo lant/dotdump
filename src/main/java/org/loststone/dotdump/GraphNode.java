@@ -14,8 +14,8 @@ public class GraphNode {
     this.id = id; 
   }
 
-  public String getId() {
-    return this.id;
+  public String wrappedId() {
+    return "\""+this.id+"\"";
   }
 
   public GraphNode withText(String text) {
@@ -36,7 +36,7 @@ public class GraphNode {
   public String toNodeDefinition() {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append('\t');
-    stringBuilder.append(id);
+    stringBuilder.append(wrappedId());
     if (hasAttributes()) {
       List<String> attributes = new ArrayList<>();
 

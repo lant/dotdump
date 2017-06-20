@@ -12,13 +12,13 @@ public class NodeRelationTest {
   @Test
   public void testBasicGraphRelation() {
     NodeRelation nodeRelation = new NodeRelation(a, b).withType(GraphType.GRAPH);
-    assertEquals("\ta -- b;\n", nodeRelation.toString());
+    assertEquals("\t\"a\" -- \"b\";\n", nodeRelation.toString());
   }
 
   @Test
   public void testBasicDigraphRelation() {
     NodeRelation nodeRelation = new NodeRelation(a, b).withType(GraphType.DIGRAPH);
-    assertEquals("\ta --> b;\n", nodeRelation.toString());
+    assertEquals("\t\"a\" -> \"b\";\n", nodeRelation.toString());
   }
 
 }
