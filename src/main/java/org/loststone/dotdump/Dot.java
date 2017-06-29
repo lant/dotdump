@@ -26,7 +26,6 @@ public class Dot {
   public Dot(GraphType graphType, String name) {
     this.type = graphType;
     this.name = name;
-
     nodes = new ArrayList<>();
     relations = new ArrayList<>(); 
   } 

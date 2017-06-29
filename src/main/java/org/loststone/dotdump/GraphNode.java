@@ -8,6 +8,7 @@ public class GraphNode {
   private final String id;
   private String text;
   private NodeShapes nodeShape;
+  private Color color;
 
   public GraphNode(String id) {
     // todo check that the id is valid.
@@ -28,9 +29,14 @@ public class GraphNode {
     return this;
   }
 
+  public GraphNode withColor(Color color) {
+    this.color = color;
+    return this;
+  }
+
   private boolean hasAttributes() {
     return (this.nodeShape != null) ||
-        (this.text != null);
+        (this.text != null) || (this.color != null);
   }
 
   public String toNodeDefinition() {
@@ -42,6 +48,7 @@ public class GraphNode {
 
       if (text != null) { attributes.add("label=\"" + text+"\"" ); }
       if (nodeShape != null) { attributes.add("shape=" + nodeShape.name() ); }
+      if (color != null) { attributes.add("color="+color.name()); }
 
       stringBuilder.append(" [");
       int attIdx = 0;

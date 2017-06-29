@@ -8,7 +8,8 @@ public class NodeRelation {
   private final GraphNode b;
   private GraphType type;
 
-  private String text; 
+  private String text;
+  private Color color;
 
   public NodeRelation(GraphNode a, GraphNode b) {
     this.a = a; 
@@ -25,6 +26,11 @@ public class NodeRelation {
     return this; 
   }
 
+  public NodeRelation withColor(Color color) {
+    this.color = color;
+    return this;
+  }
+
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
@@ -38,7 +44,10 @@ public class NodeRelation {
     if (hasAttributes()) {
       stringBuilder.append("[");
       List<String> attributes = new ArrayList<>();
+
       if (text != null) { attributes.add("label=\"" + text + "\"");  }
+      if (color != null) { attributes.add("color="+color.name());  }
+
       int attIdx = 0;
       for (String attribute : attributes) {
         stringBuilder.append(attribute);
@@ -56,6 +65,6 @@ public class NodeRelation {
   }
 
   private boolean hasAttributes() {
-    return (this.text != null);
+    return (this.text != null) || (this.color != null);
   }
 }
