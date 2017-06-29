@@ -13,3 +13,6 @@ You can find more info about the *dot* format at [Graphviz web](http://www.graph
 ## 0.1
 * Basic functionality to draw graphs and digraphs. 
 * Node shapes and labels. 
+## 0.2
+* Tested with files. 
+* Colors

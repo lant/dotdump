@@ -1,11 +1,77 @@
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-version = '0.1'
+group = "com.loststone.dotdump"
+archivesBaseName = "DotDump"
+version = '0.2'
 
 repositories {
     mavenCentral()
 }
 
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
 dependencies {
   testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name 'Dot file output'
+        packaging 'jar'
+        description 'A JVM graphviz dot file output format'
+        url 'https://github.com/lant/dotdump'
+
+        scm {
+          connection 'scm:git:git://github.com/lant/dotdump.git'
+          developerConnection 'scm:git:ssh://github.com:lant/dotdump.git'
+          url 'https://github.com/lant/dotdump'
+        }
+
+        licenses {
+          license {
+            name 'The MIT License' 
+            url 'https://opensource.org/licenses/MIT'
+          }
+        }
+
+        developers {
+          developer {
+            id 'lant'
+            name 'Marc de Palol'
+            email 'phlegias@gmail.com'
+          }
+        }
+      }
+    }
+  }
 }

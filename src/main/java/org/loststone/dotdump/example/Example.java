@@ -5,7 +5,7 @@ import org.loststone.dotdump.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Example {
+class Example {
 
   public static void main(String ...args) throws IOException {
     Dot musicGraph = new Dot(GraphType.DIGRAPH, "Some metal bands");
