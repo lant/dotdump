@@ -1,4 +1,4 @@
-package org.loststone.dotdump;
+package com.github.lant.dotdump;
 
 import java.util.ArrayList;
 import java.util.List;

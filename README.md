@@ -14,7 +14,7 @@ You can find more info about the *dot* format at [Graphviz web](http://www.graph
 A simple music chart: 
 
 ```java
-import org.loststone.dotdump.*;
+import com.github.lant.dotdump.*;
 
 import java.io.File;
 import java.io.IOException;

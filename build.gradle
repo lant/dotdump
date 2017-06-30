@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-group = "com.loststone.dotdump"
+group = "com.github.lant.dotdump"
 archivesBaseName = "DotDump"
 version = '0.2'
 
