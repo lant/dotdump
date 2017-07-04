@@ -3,16 +3,16 @@ package com.github.lant.dotdump;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Main class to interact with the file format.
  */
 public class Dot {
 
-  private final List<GraphNode> nodes; 
-  private final List<NodeRelation> relations; 
+  private final Queue<GraphNode> nodes;
+  private final Queue<NodeRelation> relations;
 
   private final GraphType type;
   private final String name;
@@ -26,8 +26,8 @@ public class Dot {
   public Dot(GraphType graphType, String name) {
     this.type = graphType;
     this.name = name;
-    nodes = new ArrayList<>();
-    relations = new ArrayList<>(); 
+    nodes = new ConcurrentLinkedQueue<>();
+    relations = new ConcurrentLinkedQueue<>();
   } 
   
   /**
@@ -68,13 +68,13 @@ public class Dot {
     footnote(container);
   }
 
-  private void writeRelations(List<NodeRelation> relations, Appendable container) throws IOException {
+  private void writeRelations(Queue<NodeRelation> relations, Appendable container) throws IOException {
     for (NodeRelation relation : relations) {
       container.append(relation.toString());
     }
   }
 
-  private void defineNodes(List<GraphNode> nodes, Appendable container) throws IOException {
+  private void defineNodes(Queue<GraphNode> nodes, Appendable container) throws IOException {
      for (GraphNode node : nodes) {
        container.append(node.toNodeDefinition());
      }
@@ -112,5 +112,13 @@ public class Dot {
     FileWriter fw = new FileWriter(outputFile); 
     build(fw); 
     fw.close(); 
+  }
+
+  public int getNodesSize() {
+    return this.nodes.size();
+  }
+
+  public int getRelationsSize() {
+    return this.relations.size();
   }
 }

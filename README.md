@@ -1,6 +1,10 @@
-# DotDump, a JVM .dot file library. 
+# DotDump, a JVM .dot file generating library. 
 
 DotDump aims to be a very simple *dot* graph file format output for the JVM. 
+
+I found myself writing different hacky dot file dumpers for different projects, so I decided that I'd write a fairly decent one once and for all. 
+
+This library 100% java without external dependencies (other than junit) is thread safe.
 
 This is **not** a graph library, it just writes your graph into *dot* format. 
 
@@ -9,7 +13,7 @@ You can find more info about the *dot* format at [Graphviz web](http://www.graph
 
 [![Build Status](https://travis-ci.org/lant/dotdump.svg?branch=master)](https://travis-ci.org/lant/dotdump)
 
-# Examples
+## Examples
 
 A simple music chart: 
 
@@ -76,11 +80,17 @@ DIGRAPH "Some metal bands" {
 }
 ```
 
-# Changelog
-## 0.1
+## Changelog
+
+### 0.3
+* Packaging to maven repository. 
+* Thread safe. 
+
+### 0.2
+* Tested with files. 
+* Colors
+
+### 0.1
 * Basic functionality to draw graphs and digraphs. 
 * Node shapes and labels. 
 
-## 0.2
-* Tested with files. 
-* Colors
