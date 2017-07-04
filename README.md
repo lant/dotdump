@@ -12,6 +12,8 @@ You can find more info about the *dot* format at [Graphviz web](http://www.graph
 
 
 [![Build Status](https://travis-ci.org/lant/dotdump.svg?branch=master)](https://travis-ci.org/lant/dotdump)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.lant/DotDump.svg)]()
 
 ## Examples
 
