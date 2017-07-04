@@ -6,6 +6,9 @@ group = "com.github.lant"
 archivesBaseName = "DotDump"
 version = '0.4'
 
+def user = hasProperty('ossrhUsername') ? ossrhUsername : ""
+def pwd = hasProperty('ossrhPassword') ? ossrhPassword : ""
+
 repositories {
     mavenCentral()
 }
@@ -38,11 +41,11 @@ uploadArchives {
       beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
       repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
+        authentication(userName: user, password: pwd)
       }
 
       snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
+        authentication(userName: user, password: pwd)
       }
 
       pom.project {
