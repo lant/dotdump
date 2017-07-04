@@ -82,6 +82,9 @@ DIGRAPH "Some metal bands" {
 
 ## Changelog
 
+### 0.4 
+* Release ready. 
+
 ### 0.3
 * Packaging to maven repository. 
 * Thread safe. 
