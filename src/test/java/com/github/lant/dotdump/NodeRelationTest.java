@@ -12,45 +12,45 @@ public class NodeRelationTest {
   @Test
   public void testBasicGraphRelation() {
     NodeRelation nodeRelation = new NodeRelation(a, b)
-        .withType(GraphType.GRAPH);
+            .withType(GraphType.GRAPH);
     assertEquals("\t\"a\" -- \"b\";\n",
-        nodeRelation.toString());
+            nodeRelation.toString());
   }
 
   @Test
   public void testBasicDigraphRelation() {
     NodeRelation nodeRelation = new NodeRelation(a, b)
-        .withType(GraphType.DIGRAPH);
+            .withType(GraphType.DIGRAPH);
     assertEquals("\t\"a\" -> \"b\";\n",
-        nodeRelation.toString());
+            nodeRelation.toString());
   }
 
   @Test
   public void testRelationWithColor() {
     NodeRelation nodeRelation = new NodeRelation(a, b)
-        .withType(GraphType.DIGRAPH)
-        .withColor(Color.red);
-    assertEquals("\t\"a\" -> \"b\"[color=red];\n",
-        nodeRelation.toString());
+            .withType(GraphType.DIGRAPH)
+            .withColor(Color.red);
+    assertEquals("\t\"a\" -> \"b\" [color=\"red\"];\n",
+            nodeRelation.toString());
   }
 
   @Test
   public void testRelationWithLabel() {
     NodeRelation nodeRelation = new NodeRelation(a, b)
-        .withType(GraphType.DIGRAPH)
-        .withLabel("test");
-    assertEquals("\t\"a\" -> \"b\"[label=\"test\"];\n",
-        nodeRelation.toString());
+            .withType(GraphType.DIGRAPH)
+            .withLabel("test");
+    assertEquals("\t\"a\" -> \"b\" [label=\"test\"];\n",
+            nodeRelation.toString());
   }
 
   @Test
   public void testRelationWithColorAndLabel() {
     NodeRelation nodeRelation = new NodeRelation(a, b)
-        .withType(GraphType.DIGRAPH)
-        .withLabel("test")
-        .withColor(Color.black);
-    assertEquals("\t\"a\" -> \"b\"[label=\"test\", color=black];\n",
-        nodeRelation.toString());
+            .withType(GraphType.DIGRAPH)
+            .withLabel("test")
+            .withColor(Color.black);
+    assertEquals("\t\"a\" -> \"b\" [color=\"black\", label=\"test\"];\n",
+            nodeRelation.toString());
   }
 
 }

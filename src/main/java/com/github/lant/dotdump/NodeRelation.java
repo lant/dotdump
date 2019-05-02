@@ -1,15 +1,16 @@
 package com.github.lant.dotdump;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class NodeRelation {
+  private final AttributeBuilder attributeBuilder = new AttributeBuilder();
+
   private final GraphNode a; 
   private final GraphNode b;
   private GraphType type;
 
-  private String text;
-  private Color color;
+  private Map<String, String> attributes = new TreeMap<>();
 
   public NodeRelation(GraphNode a, GraphNode b) {
     this.a = a; 
@@ -22,12 +23,17 @@ public class NodeRelation {
   }
 
   public NodeRelation withLabel(String text) {
-    this.text = text;  
+    this.attributes.put("label", text);
     return this; 
   }
 
   public NodeRelation withColor(Color color) {
-    this.color = color;
+    this.attributes.put("color", color.name());
+    return this;
+  }
+
+  public NodeRelation withWeight(int weight) {
+    this.attributes.put("weight", String.valueOf(weight));
     return this;
   }
 
@@ -41,30 +47,9 @@ public class NodeRelation {
     stringBuilder.append(" ");
     stringBuilder.append(b.wrappedId());
 
-    if (hasAttributes()) {
-      stringBuilder.append("[");
-      List<String> attributes = new ArrayList<>();
-
-      if (text != null) { attributes.add("label=\"" + text + "\"");  }
-      if (color != null) { attributes.add("color="+color.name());  }
-
-      int attIdx = 0;
-      for (String attribute : attributes) {
-        stringBuilder.append(attribute);
-        attIdx++;
-        if (attIdx < attributes.size()) {
-          stringBuilder.append(", ");
-        }
-      }
-      stringBuilder.append("]");
-    }
+    stringBuilder.append(attributeBuilder.build(attributes));
 
     stringBuilder.append(";\n");
-
     return stringBuilder.toString();
-  }
-
-  private boolean hasAttributes() {
-    return (this.text != null) || (this.color != null);
   }
 }

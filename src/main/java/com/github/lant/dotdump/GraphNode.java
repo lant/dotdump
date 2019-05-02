@@ -1,67 +1,45 @@
 package com.github.lant.dotdump;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class GraphNode {
+  private final AttributeBuilder attributeBuilder = new AttributeBuilder();
+  private Map<String, String> attributes = new TreeMap<>();
 
   private final String id;
-  private String text;
-  private NodeShapes nodeShape;
-  private Color color;
 
   public GraphNode(String id) {
     // todo check that the id is valid.
     this.id = id; 
   }
 
-  public String wrappedId() {
+  String wrappedId() {
     return "\""+this.id+"\"";
   }
 
   public GraphNode withText(String text) {
-    this.text = text; 
-    return this; 
+    this.attributes.put("label", text);
+    return this;
   }
 
   public GraphNode withShape(NodeShapes nodeShape) {
-    this.nodeShape = nodeShape;
+    this.attributes.put("shape", nodeShape.name());
     return this;
   }
 
   public GraphNode withColor(Color color) {
-    this.color = color;
+    this.attributes.put("color", color.name());
     return this;
-  }
-
-  private boolean hasAttributes() {
-    return (this.nodeShape != null) ||
-        (this.text != null) || (this.color != null);
   }
 
   public String toNodeDefinition() {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append('\t');
     stringBuilder.append(wrappedId());
-    if (hasAttributes()) {
-      List<String> attributes = new ArrayList<>();
-
-      if (text != null) { attributes.add("label=\"" + text+"\"" ); }
-      if (nodeShape != null) { attributes.add("shape=" + nodeShape.name() ); }
-      if (color != null) { attributes.add("color="+color.name()); }
-
-      stringBuilder.append(" [");
-      int attIdx = 0;
-      for (String attribute : attributes) {
-        stringBuilder.append(attribute);
-        attIdx++;
-        if (attIdx < attributes.size()) {
-          stringBuilder.append(", ");
-        }
-      }
-      stringBuilder.append("]");
-    }
+    stringBuilder.append(attributeBuilder.build(attributes));
     stringBuilder.append(";\n");
+
     return stringBuilder.toString();
   }
 }

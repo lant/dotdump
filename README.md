@@ -84,6 +84,10 @@ DIGRAPH "Some metal bands" {
 
 ## Changelog
 
+### 0.5
+* Gradle to 5.X
+* Edges have optional weights
+
 ### 0.4 
 * Release ready. 
 
