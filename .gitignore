@@ -6,3 +6,4 @@ build
 .gradle
 *.dot
 *.png
+out
